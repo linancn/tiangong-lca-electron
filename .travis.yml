@@ -10,8 +10,6 @@ matrix:
 
     - os: linux
       services: docker
-      language: node_js
-      node_js: "14"
 
 cache:
   yarn: true
