@@ -1,0 +1,45 @@
+{
+  "name": "electron_cystalca",
+  "version": "1.0.0",
+  "main": "compiled/main.js",
+  "build": {
+    "appId": "org.cystalca.electron",
+    "asar": true,
+    "directories": {
+    "output": "dist"
+    },
+    "win": {
+    "target": [
+    "nsis"
+    ]
+    },
+    "publish": [
+    {
+    "provider": "CrystaLCA",
+    "url": "https://www.crystalca.org/"
+    }
+    ],
+    "nsis": {
+    "oneClick": false,
+    "perMachine": true,
+    "allowToChangeInstallationDirectory": true
+    }
+    },
+  "scripts": {
+    "compile": "tsc",
+    "start": "npm run compile && electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "author": "Nan LI",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "typescript": "^4.3.5"
+  },
+  "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "electron": "^13.1.6",
+    "electron-builder":"^22.11.7"
+  }
+}

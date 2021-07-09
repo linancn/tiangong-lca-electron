@@ -1,0 +1,11 @@
+# Build directory
+compiled/
+
+# Dependency directories
+node_modules/
+
+# Electron Dist
+dist/
+
+#yarn lock
+yarn.lock
