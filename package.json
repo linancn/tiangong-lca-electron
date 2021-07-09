@@ -1,6 +1,12 @@
 {
   "name": "electron_cystalca",
   "version": "1.0.0",
+  "repository": "https://github.com/linancn/Electron-CrystaLCA",
+  "keywords": [
+    "electron",
+    "CrystaLCA",
+    "LCA"
+  ],
   "main": "compiled/main.js",
   "build": {
     "appId": "org.cystalca.electron",
@@ -19,6 +25,23 @@
     "url": "https://www.crystalca.org/"
     }
     ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "appImage": {
+      "license": "LICENSE"
+    },
     "nsis": {
     "oneClick": false,
     "perMachine": true,
