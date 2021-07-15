@@ -7,7 +7,7 @@
     "compile": "tsc",
     "start": "npm run compile && electron .",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder --config electron-builder.json"
   },
   "author": "Nan LI",
   "license": "MIT",
