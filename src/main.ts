@@ -1,10 +1,11 @@
-import { app, BrowserWindow, nativeTheme } from "electron";
+import { app, BrowserWindow, nativeTheme, shell } from "electron";
 import * as path from "path";
 import MenuBuilder from './menu/menu';
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    frame: false,
     height: 600,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -13,6 +14,15 @@ function createWindow() {
   });
 
   mainWindow.loadURL('http://localhost:8000');
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    return {
+      action: 'allow',
+      overrideBrowserWindowOptions: { // These options will be applied to the new BrowserWindow
+        frame: false,
+        // other BrowserWindow settings
+      }
+    }
+  })
   // and load the index.html of the app.
   // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
