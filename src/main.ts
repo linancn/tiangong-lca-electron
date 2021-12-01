@@ -1,4 +1,4 @@
-import { app, BrowserWindow, nativeTheme, shell } from "electron";
+import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import * as path from "path";
 import MenuBuilder from './menu/menu';
 
@@ -6,11 +6,12 @@ function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     frame: false,
-    height: 600,
     webPreferences: {
-      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
+    height: 600,
   });
 
   mainWindow.loadURL('http://localhost:8000');
@@ -23,6 +24,14 @@ function createWindow() {
       }
     }
   })
+  ipcMain.on('min', ()=> mainWindow.minimize());
+  ipcMain.on('max', ()=> {
+    if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize()
+    } else {
+        mainWindow.maximize()
+    }
+});
   // and load the index.html of the app.
   // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
@@ -31,6 +40,7 @@ function createWindow() {
   const menuBuilder = new MenuBuilder(mainWindow);
   menuBuilder.buildMenu();
 }
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
