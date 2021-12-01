@@ -20,6 +20,10 @@ function createWindow() {
       action: 'allow',
       overrideBrowserWindowOptions: { // These options will be applied to the new BrowserWindow
         frame: false,
+        webPreferences: {
+          contextIsolation: false,
+          preload: path.join(__dirname, 'preload.js'),
+        },
         // other BrowserWindow settings
       }
     }
