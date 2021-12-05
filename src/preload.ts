@@ -13,5 +13,5 @@
 //   }
 // });
 
-const ipcRenderer = require('electron').ipcRenderer;
-(window as any).ipcRenderer = ipcRenderer
+import { ipcRenderer } from 'electron';
+(window as any).ipcRenderer = ipcRenderer;

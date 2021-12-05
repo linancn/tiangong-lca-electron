@@ -15,7 +15,7 @@ function createWindow() {
   });
 
   mainWindow.loadURL('http://localhost:8000');
-  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+  mainWindow.webContents.setWindowOpenHandler(({ }) => {
     return {
       action: 'allow',
       overrideBrowserWindowOptions: { // These options will be applied to the new BrowserWindow
@@ -28,12 +28,12 @@ function createWindow() {
       }
     }
   })
-  ipcMain.on('min', ()=> mainWindow.minimize());
+  ipcMain.on('min', ()=> BrowserWindow.getFocusedWindow()?.minimize());
   ipcMain.on('max', ()=> {
-    if (mainWindow.isMaximized()) {
-        mainWindow.unmaximize()
+    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
+      BrowserWindow.getFocusedWindow()?.unmaximize()
     } else {
-        mainWindow.maximize()
+      BrowserWindow.getFocusedWindow()?.maximize()
     }
 });
   // and load the index.html of the app.
