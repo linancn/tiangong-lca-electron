@@ -35,13 +35,18 @@ function createWindow() {
   ipcMain.on("max", () => {
     if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
       BrowserWindow.getFocusedWindow()?.unmaximize();
-      BrowserWindow.getFocusedWindow()?.webContents.send("window-unmax");
     } else {
       BrowserWindow.getFocusedWindow()?.maximize();
-      BrowserWindow.getFocusedWindow()?.webContents.send("window-max");
     }
   });
 
+  BrowserWindow.getFocusedWindow()?.on("maximize", () => {
+    BrowserWindow.getFocusedWindow()?.webContents.send("window-max");
+  });
+
+  BrowserWindow.getFocusedWindow()?.on("unmaximize", () => {
+    BrowserWindow.getFocusedWindow()?.webContents.send("window-unmax");
+  });
   // and load the index.html of the app.
   // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
@@ -62,6 +67,8 @@ app.on("ready", () => {
     // dock icon is clicked and there are no other windows open.
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
+
+  
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common

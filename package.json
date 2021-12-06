@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
-    "electron": "^16.0.1",
-    "electron-builder": "^22.14.7"
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5"
   }
 }
