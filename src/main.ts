@@ -1,41 +1,47 @@
 import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
 import * as path from "path";
-import MenuBuilder from './menu/menu';
+import MenuBuilder from "./menu/menu";
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     frame: false,
-    webPreferences: {
-      contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js'),
-    },
     width: 800,
     height: 600,
+    webPreferences: {
+      contextIsolation: false,
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
 
-  mainWindow.loadURL('http://localhost:8000');
-  mainWindow.webContents.setWindowOpenHandler(({ }) => {
+  mainWindow.loadURL("http://localhost:8000");
+  mainWindow.webContents.setWindowOpenHandler(({}) => {
     return {
-      action: 'allow',
-      overrideBrowserWindowOptions: { // These options will be applied to the new BrowserWindow
+      action: "allow",
+      overrideBrowserWindowOptions: {
+        // These options will be applied to the new BrowserWindow
         frame: false,
         webPreferences: {
           contextIsolation: false,
-          preload: path.join(__dirname, 'preload.js'),
+          preload: path.join(__dirname, "preload.js"),
         },
         // other BrowserWindow settings
-      }
-    }
-  })
-  ipcMain.on('min', ()=> BrowserWindow.getFocusedWindow()?.minimize());
-  ipcMain.on('max', ()=> {
+      },
+    };
+  });
+
+  ipcMain.on("min", () => BrowserWindow.getFocusedWindow()?.minimize());
+
+  ipcMain.on("max", () => {
     if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
-      BrowserWindow.getFocusedWindow()?.unmaximize()
+      BrowserWindow.getFocusedWindow()?.unmaximize();
+      BrowserWindow.getFocusedWindow()?.webContents.send("window-unmax");
     } else {
-      BrowserWindow.getFocusedWindow()?.maximize()
+      BrowserWindow.getFocusedWindow()?.maximize();
+      BrowserWindow.getFocusedWindow()?.webContents.send("window-max");
     }
-});
+  });
+
   // and load the index.html of the app.
   // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
@@ -45,13 +51,11 @@ function createWindow() {
   menuBuilder.buildMenu();
 }
 
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
-
-  nativeTheme.themeSource = 'dark';
+  nativeTheme.themeSource = "dark";
   createWindow();
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
