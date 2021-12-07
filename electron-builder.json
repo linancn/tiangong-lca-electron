@@ -41,6 +41,17 @@
         "target": "nsis",
         "icon": "./icons/icon.ico"
     },
+    "nsis": {
+        "oneClick": false,
+        "allowElevation": true,
+        "allowToChangeInstallationDirectory": true,
+        "installerIcon": "./icons/icon.ico",
+        "uninstallerIcon": "./icons/icon.ico",
+        "installerHeaderIcon": "./icons/icon.ico",
+        "createDesktopShortcut": true,
+        "createStartMenuShortcut": true,
+        "shortcutName": "CrystaLCA"
+      },
     "linux": {
         "target": "AppImage",
         "category": "Utility",

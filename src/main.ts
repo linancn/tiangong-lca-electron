@@ -21,6 +21,7 @@ function createWindow() {
     shell.openExternal(url);
     return { action: "deny" };
   });
+  
   //open urls in electron window config
 
   // mainWindow.webContents.setWindowOpenHandler(({}) => {
