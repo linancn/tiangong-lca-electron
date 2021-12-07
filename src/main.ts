@@ -1,4 +1,4 @@
-import { app, BrowserWindow, nativeTheme, ipcMain } from "electron";
+import { app, BrowserWindow, nativeTheme, ipcMain, shell } from "electron";
 import * as path from "path";
 import MenuBuilder from "./menu/menu";
 
@@ -15,47 +15,55 @@ function createWindow() {
   });
 
   mainWindow.loadURL("http://localhost:8000");
-  mainWindow.webContents.setWindowOpenHandler(({}) => {
-    return {
-      action: "allow",
-      overrideBrowserWindowOptions: {
-        // These options will be applied to the new BrowserWindow
-        frame: false,
-        webPreferences: {
-          contextIsolation: false,
-          preload: path.join(__dirname, "preload.js"),
-        },
-        // other BrowserWindow settings
-      },
-    };
-  });
 
-  ipcMain.on("min", () => BrowserWindow.getFocusedWindow()?.minimize());
+  // Open external urls in default browser.
+  mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
+  //open urls in electron window config
+
+  // mainWindow.webContents.setWindowOpenHandler(({}) => {
+  //   return {
+  //     action: "allow",
+  //     overrideBrowserWindowOptions: {
+  //       // These options will be applied to the new BrowserWindow
+  //       frame: false,
+  //       webPreferences: {
+  //         contextIsolation: false,
+  //         preload: path.join(__dirname, "preload.js"),
+  //       },
+  //       // other BrowserWindow settings
+  //     },
+  //   };
+  // });
+
+  ipcMain.on("min", () => mainWindow.minimize());
 
   ipcMain.on("max", () => {
-    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
-      BrowserWindow.getFocusedWindow()?.unmaximize();
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize();
     } else {
-      BrowserWindow.getFocusedWindow()?.maximize();
+      mainWindow.maximize();
     }
   });
 
-  BrowserWindow.getFocusedWindow()?.on("maximize", () => {
-    BrowserWindow.getFocusedWindow()?.webContents.send("window-max");
+  mainWindow.on("maximize", () => {
+    mainWindow.webContents.send("window-max");
   });
 
-  BrowserWindow.getFocusedWindow()?.on("unmaximize", () => {
-    BrowserWindow.getFocusedWindow()?.webContents.send("window-unmax");
+  mainWindow.on("unmaximize", () => {
+    mainWindow.webContents.send("window-unmax");
   });
 
   ipcMain.on("status", () => {
-    if (BrowserWindow.getFocusedWindow()?.isMaximized()) {
-      BrowserWindow.getFocusedWindow()?.webContents.send("window-max");
+    if (mainWindow.isMaximized()) {
+      mainWindow.webContents.send("window-max");
     } else {
-      BrowserWindow.getFocusedWindow()?.webContents.send("window-unmax");
+      mainWindow.webContents.send("window-unmax");
     }
   });
-  // and load the index.html of the app.
+  // load the index.html of the app.
   // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
   // Open the DevTools.
