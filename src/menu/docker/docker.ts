@@ -4,10 +4,10 @@ export default function DockerBuider(platform: string): string {
   let msg = '';
   switch (platform) {
     case 'windows':
-      msg = child.execSync('docker stop 5153627520c0').toString();
+      msg = child.execSync('docker ps').toString();
       break;
     case 'mac':
-      msg = child.execSync('docker stop 5153627520c0').toString();
+      msg = child.execSync('docker ps').toString();
       break;
     default:
       break;

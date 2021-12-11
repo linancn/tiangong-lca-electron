@@ -1,6 +1,6 @@
 import { app, BrowserWindow, nativeTheme, ipcMain, shell } from "electron";
 import * as path from "path";
-import MenuBuilder from "./menu/menu";
+// import MenuBuilder from "./menu/menu";
 
 function createWindow() {
   // Create the browser window.
@@ -69,8 +69,8 @@ function createWindow() {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  // const menuBuilder = new MenuBuilder(mainWindow);
+  // menuBuilder.buildMenu();
 }
 
 // This method will be called when Electron has finished
