@@ -1,13 +1,16 @@
 import { app, BrowserWindow, nativeTheme, ipcMain, shell } from "electron";
 import * as path from "path";
+import { updateHandle } from "./updater/updater";
 // import MenuBuilder from "./menu/menu";
+
+updateHandle();
 
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     frame: false,
-    width: 800,
-    height: 600,
+    width: 1366,
+    height: 768,
     webPreferences: {
       contextIsolation: false,
       preload: path.join(__dirname, "preload.js"),
@@ -21,7 +24,7 @@ function createWindow() {
     shell.openExternal(url);
     return { action: "deny" };
   });
-  
+
   //open urls in electron window config
 
   // mainWindow.webContents.setWindowOpenHandler(({}) => {

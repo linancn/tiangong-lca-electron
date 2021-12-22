@@ -1,6 +1,6 @@
 {
   "name": "electron_cystalca",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "An Electron wrapped CrystaLCA",
   "main": "compiled/main.js",
   "scripts": {
@@ -9,9 +9,11 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --config electron-builder.json"
   },
-  "author": "Nan LI",
+  "author": "CrystaLCA",
   "license": "MIT",
   "dependencies": {
+    "electron-log": "^4.4.3",
+    "electron-updater": "^4.6.1",
     "typescript": "^4.5.2"
   },
   "devDependencies": {
