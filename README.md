@@ -1,3 +1,3 @@
-# Electron-CrystaLCA[![Build/release](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml/badge.svg)](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml)
+# Electron-CrystaLCA [![Build/release](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml)
 
 An Electron wrapped CrystaLCA.
