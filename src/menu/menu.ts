@@ -7,7 +7,7 @@ import {
   shell,
   dialog,
 } from 'electron';
-import DockerBuider from './docker/docker';
+import DockerBuider from '../docker/docker';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;

@@ -3,6 +3,7 @@ import * as path from "path";
 import { AppImageUpdater, MacUpdater, NsisUpdater } from "electron-updater";
 import log from "electron-log";
 import { AllPublishOptions } from "builder-util-runtime";
+import DockerBuider from "./docker/docker";
 // import MenuBuilder from "./menu/menu";
 
 function createWindow() {
@@ -136,6 +137,8 @@ function createWindow() {
 app.on("ready", () => {
   nativeTheme.themeSource = "dark";
   createWindow();
+  DockerBuider(process.platform);
+  // log.info(DockerBuider(process.platform));
   app.on("activate", function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
