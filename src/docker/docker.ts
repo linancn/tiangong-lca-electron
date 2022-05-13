@@ -12,14 +12,15 @@ export default function DockerBuider(platform: string): string {
       ]);
       dbpull.stdout.on("data", (data) => {
         console.log(`${data}`);
-        mainwindow?.webContents.send(`${data}`);
+        mainwindow?.webContents.send('data', `${data}`);
       });
       dbpull.stderr.on("data", (data) => {
         console.error(`${data}`);
+        mainwindow?.webContents.send('data', `${data}`);
       });
       dbpull.on("close", function (code) {
         console.log(`child process exited with code ${code}`);
-        mainwindow?.webContents.send(`code ${code}`);
+        mainwindow?.webContents.send('close', `${code}`);
       });
       break;
     case "darwin":
