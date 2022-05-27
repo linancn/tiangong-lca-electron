@@ -1,60 +1,63 @@
 {
-    "appId": "org.crystalca",
-    "productName": "CrystaLCA",
-    "copyright": "Nan LI",
-    "directories": {
-        "app": ".",
-        "output": "dist",
-        "buildResources": "build-res"
-    },
-    "files": [
-        "package.json",
-        "compiled/**/*",
-        "node_modules"
-    ],
-    "dmg": {
-        "background": null,
-        "backgroundColor": "#ffffff",
-        "window": {
-            "width": "400",
-            "height": "300"
-        },
-        "contents": [
-            {
-                "x": 100,
-                "y": 100
-            },
-            {
-                "x": 300,
-                "y": 100,
-                "type": "link",
-                "path": "/Applications"
-            }
-        ]
-    },
-    "mac": {
-        "target": "dmg",
-        "category": "public.app-category.utilities",
-        "icon": "./icons/icon.icns"
-      },
-    "win": {
-        "target": "nsis",
-        "icon": "./icons/icon.ico"
-    },
-    "nsis": {
-        "oneClick": false,
-        "allowElevation": true,
-        "allowToChangeInstallationDirectory": true,
-        "installerIcon": "./icons/icon.ico",
-        "uninstallerIcon": "./icons/icon.ico",
-        "installerHeaderIcon": "./icons/icon.ico",
-        "createDesktopShortcut": true,
-        "createStartMenuShortcut": true,
-        "shortcutName": "CrystaLCA"
-      },
-    "linux": {
-        "target": "AppImage",
-        "category": "Utility",
-        "icon": "./icons"
+  "appId": "org.crystalca",
+  "productName": "CrystaLCA",
+  "copyright": "Nan LI",
+  "directories": {
+    "app": ".",
+    "output": "dist",
+    "buildResources": "build-res"
+  },
+  "files": ["package.json", "compiled/**/*", "node_modules"],
+  "extraFiles": [
+    {
+      "from": ".",
+      "to": ".",
+      "filter": ["docker*"]
     }
+  ],
+  "dmg": {
+    "background": null,
+    "backgroundColor": "#ffffff",
+    "window": {
+      "width": "400",
+      "height": "300"
+    },
+    "contents": [
+      {
+        "x": 100,
+        "y": 100
+      },
+      {
+        "x": 300,
+        "y": 100,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "mac": {
+    "target": "dmg",
+    "category": "public.app-category.utilities",
+    "icon": "./icons/icon.icns"
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "./icons/icon.ico"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": true,
+    "installerIcon": "./icons/icon.ico",
+    "uninstallerIcon": "./icons/icon.ico",
+    "installerHeaderIcon": "./icons/icon.ico",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "CrystaLCA"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility",
+    "icon": "./icons"
+  }
 }

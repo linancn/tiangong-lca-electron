@@ -7,7 +7,7 @@ import {
   shell,
   dialog,
 } from 'electron';
-import DockerBuider from '../docker/docker';
+import DockerBuider from '../docker/docker-check';
 
 interface DarwinMenuItemConstructorOptions extends MenuItemConstructorOptions {
   selector?: string;
@@ -141,29 +141,29 @@ export default class MenuBuilder {
         },
       ],
     };
-    const subMenuData: DarwinMenuItemConstructorOptions = {
-      label: 'Database',
-      submenu: [
-        {
-          label: 'Start Database',
-          accelerator: 'Command+D',
-          click() {
-            // shell.openExternal('https://electronjs.org');
-            const msg = DockerBuider('mac');
-            dialog.showMessageBox({
-              title: 'Database', // Title
-              message: msg, // Msg
-              buttons: ['OK'], // Botton
-              noLink: true, // Windows Style
-              type: 'info', // Icon
-              // type: "error",//Icon
-              // icon:nativeImage.createFromPath("./icon/png.png"),//Icon Files
-              // cancelId: 2, // Button ID of X
-            });
-          },
-        },
-      ],
-    };
+    // const subMenuData: DarwinMenuItemConstructorOptions = {
+    //   label: 'Database',
+    //   submenu: [
+    //     {
+    //       label: 'Start Database',
+    //       accelerator: 'Command+D',
+    //       click() {
+    //         // shell.openExternal('https://electronjs.org');
+    //         const msg = DockerBuider('mac');
+    //         dialog.showMessageBox({
+    //           title: 'Database', // Title
+    //           message: msg, // Msg
+    //           buttons: ['OK'], // Botton
+    //           noLink: true, // Windows Style
+    //           type: 'info', // Icon
+    //           // type: "error",//Icon
+    //           // icon:nativeImage.createFromPath("./icon/png.png"),//Icon Files
+    //           // cancelId: 2, // Button ID of X
+    //         });
+    //       },
+    //     },
+    //   ],
+    // };
     const subMenuWindow: DarwinMenuItemConstructorOptions = {
       label: 'Window',
       submenu: [
@@ -219,7 +219,7 @@ export default class MenuBuilder {
       subMenuAbout,
       subMenuEdit,
       subMenuView,
-      subMenuData,
+      // subMenuData,
       subMenuWindow,
       subMenuHelp,
     ];
@@ -285,28 +285,28 @@ export default class MenuBuilder {
                 },
               ],
       },
-      {
-        label: 'Database',
-        submenu: [
-          {
-            label: 'Start Database',
-            click() {
-              // shell.openExternal('https://electronjs.org');
-              const msg = DockerBuider('windows');
-              dialog.showMessageBox({
-                title: 'Database', // Title
-                message: msg, // Msg
-                buttons: ['OK'], // Botton
-                noLink: true, // Windows Style
-                type: 'info', // Icon
-                // type: "error",//Icon
-                // icon:nativeImage.createFromPath("./icon/png.png"),//Icon Files
-                // cancelId: 2, // Button ID of X
-              });
-            },
-          },
-        ],
-      },
+      // {
+      //   label: 'Database',
+      //   submenu: [
+      //     {
+      //       label: 'Start Database',
+      //       click() {
+      //         // shell.openExternal('https://electronjs.org');
+      //         const msg = DockerBuider('windows');
+      //         dialog.showMessageBox({
+      //           title: 'Database', // Title
+      //           message: msg, // Msg
+      //           buttons: ['OK'], // Botton
+      //           noLink: true, // Windows Style
+      //           type: 'info', // Icon
+      //           // type: "error",//Icon
+      //           // icon:nativeImage.createFromPath("./icon/png.png"),//Icon Files
+      //           // cancelId: 2, // Button ID of X
+      //         });
+      //       },
+      //     },
+      //   ],
+      // },
       {
         label: 'Help',
         submenu: [

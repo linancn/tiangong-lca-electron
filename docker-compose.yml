@@ -1,0 +1,40 @@
+version: "2"
+services:
+
+  db:
+    image: linancn/postgres_55434:220514
+    labels:
+     - lca
+     - lcauserdb
+    restart: unless-stopped
+    environment:
+      PGDATA: /postgres/data
+
+  dbcommon:
+    image: linancn/postgres_55435:220514
+    labels:
+     - lca
+    restart: unless-stopped
+    environment:
+      PGDATA: /postgres/data
+
+  backend:
+    image: linancn/crystalcabackend:v0.0.6
+    labels:
+     - lca
+    restart: unless-stopped
+    depends_on:
+      - db
+      - dbcommon
+    ports:
+      - "8081:8081"
+
+  foreend:
+    image: linancn/crystalca:v0.0.6
+    labels:
+     - lca
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "8000:8000"

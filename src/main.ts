@@ -3,7 +3,8 @@ import * as path from "path";
 import { AppImageUpdater, MacUpdater, NsisUpdater } from "electron-updater";
 import log from "electron-log";
 import { AllPublishOptions } from "builder-util-runtime";
-import DockerBuider from "./docker/docker";
+import DockerBuider from "./docker/docker-check";
+import DockerStop from "./docker/docker-stop";
 // import MenuBuilder from "./menu/menu";
 
 function createWindow() {
@@ -149,10 +150,15 @@ app.on("ready", () => {
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+// app.on("window-all-closed", () => {
+//   if (process.platform !== "darwin") {
+//     app.quit();
+//   }
+// });
+
+app.on("quit", function () {
+  //stop running containers
+  DockerStop(process.platform);
 });
 
 // In this file you can include the rest of your app"s specific main process
