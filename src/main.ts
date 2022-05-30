@@ -14,12 +14,16 @@ function createWindow() {
     width: 1366,
     height: 768,
     webPreferences: {
+      nodeIntegration: true,
       contextIsolation: false,
       preload: path.join(__dirname, "preload.js"),
     },
   });
 
-  mainWindow.loadURL("http://localhost:8000");
+  // mainWindow.loadURL("http://localhost:8000");
+
+  // load the index.html of the app.
+  mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
   // Open external urls in default browser.
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
@@ -69,8 +73,6 @@ function createWindow() {
       mainWindow.webContents.send("window-unmax");
     }
   });
-  // load the index.html of the app.
-  // mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
   const options = {
     provider: "github",

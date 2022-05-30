@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>CrystaLCA</title>
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-  </head>
-  <body>
-    <h1>CrystaLCA</h1>
-    We are using Node.js <span id="node-version"></span>, Chromium
-    <span id="chrome-version"></span>, and Electron
-    <span id="electron-version"></span>.
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./dist/renderer.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <title>CrystaLCA</title>
+</head>
+<script>
+  let message = "";
+  const ipcRender = require('electron');
+
+  ipcRenderer.on('data', (event, arg) => {
+    message = `${arg}<br/>` + message;
+    document.getElementById("message").innerHTML = message;
+    if (`${arg}`.search("Docker engine is not running.") > -1) {
+      document.getElementById("title").innerHTML = "Docker engine is not running";
+      document.getElementById("exit").style.display = "inline";
+    }
+  });
+
+  ipcRenderer.on('close', (event, arg) => {
+    document.getElementById("title").innerHTML = "Docker engine is not running";
+    document.getElementById("exit").style.display = "inline";
+  });
+
+</script>
+
+<body>
+  <h1 id="title">Docker starting</h1>
+  <p>Message:</p>
+  <p id="message" style="height:200px; width:500px; overflow:auto"></p>
+  <button id="exit" style="display:none" onclick={window.close()}>Exit</button>
+</body>
+
 </html>
