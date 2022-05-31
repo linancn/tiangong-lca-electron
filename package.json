@@ -12,6 +12,7 @@
   "author": "CrystaLCA",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.27.2",
     "electron-log": "^4.4.7",
     "electron-updater": "^5.0.1"
   },

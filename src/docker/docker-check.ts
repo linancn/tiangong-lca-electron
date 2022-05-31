@@ -1,21 +1,46 @@
 import * as child from "child_process";
 import { app, BrowserWindow, ipcMain } from "electron";
+import axios from "axios";
 
 export default function DockerBuider(platform: string) {
   const mainwindow = BrowserWindow.fromId(1);
+  let isStarted = false;
+
+  const axiosClient = axios.create({
+    baseURL: "http://localhost:8081",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  const Sleep = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
+
+  const backendCheck = (id: number) => {
+    axiosClient
+      .get("/api/project/count")
+      .then(() => {
+        console.log("ok");
+        if (mainwindow != null) mainwindow.loadURL("http://localhost:8000");
+      })
+      .catch(async () => {
+        console.log("err");
+        mainwindow?.webContents.send("data", `Backend starting... (${id})`);
+        await Sleep(1000);
+        backendCheck(id + 1);
+      });
+  };
 
   switch (platform) {
     case "win32":
       const dockercheck = child.spawn("cmd.exe", ["/C", "docker-check.bat"]);
-
       dockercheck.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
         mainwindow?.webContents.send("data", `${data}`);
-        if (
-          mainwindow != null &&
-          `${data}`.search("Docker services started.") > -1
-        ) {
-          mainwindow.loadURL("http://localhost:8000");
+        if (`${data}`.search("Docker services started.") > -1) {
+          isStarted = true;
+          backendCheck(0);
         }
       });
 
@@ -26,7 +51,7 @@ export default function DockerBuider(platform: string) {
 
       dockercheck.on("close", function (code) {
         console.log(`close: ${code}`);
-        mainwindow?.webContents.send("close", `${code}`);
+        if (!isStarted) mainwindow?.webContents.send("close", `${code}`);
       });
 
       break;
@@ -35,11 +60,9 @@ export default function DockerBuider(platform: string) {
       dockercheckmac.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
         mainwindow?.webContents.send("data", `${data}`);
-        if (
-          mainwindow != null &&
-          `${data}`.search("Docker services started.") > -1
-        ) {
-          mainwindow.loadURL("http://localhost:8000");
+        if (`${data}`.search("Docker services started.") > -1) {
+          isStarted = true;
+          backendCheck(0);
         }
       });
 
@@ -50,7 +73,7 @@ export default function DockerBuider(platform: string) {
 
       dockercheckmac.on("close", function (code) {
         console.log(`close: ${code}`);
-        mainwindow?.webContents.send("close", `${code}`);
+        if (!isStarted) mainwindow?.webContents.send("close", `${code}`);
       });
 
       break;
@@ -62,11 +85,9 @@ export default function DockerBuider(platform: string) {
       dockerchecklinux.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
         mainwindow?.webContents.send("data", `${data}`);
-        if (
-          mainwindow != null &&
-          `${data}`.search("Docker services started.") > -1
-        ) {
-          mainwindow.loadURL("http://localhost:8000");
+        if (`${data}`.search("Docker services started.") > -1) {
+          isStarted = true;
+          backendCheck(0);
         }
       });
 
@@ -77,7 +98,7 @@ export default function DockerBuider(platform: string) {
 
       dockerchecklinux.on("close", function (code) {
         console.log(`close: ${code}`);
-        mainwindow?.webContents.send("close", `${code}`);
+        if (!isStarted) mainwindow?.webContents.send("close", `${code}`);
       });
       break;
   }

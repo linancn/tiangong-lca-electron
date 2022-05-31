@@ -20,8 +20,6 @@ function createWindow() {
     },
   });
 
-  // mainWindow.loadURL("http://localhost:8000");
-
   // load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, "../index.html"));
 
