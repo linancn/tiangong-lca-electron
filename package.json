@@ -1,6 +1,6 @@
 {
   "name": "electron_cystalca",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "An Electron wrapped CrystaLCA",
   "main": "compiled/main.js",
   "scripts": {

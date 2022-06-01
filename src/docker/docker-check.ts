@@ -56,7 +56,10 @@ export default function DockerBuider(platform: string) {
 
       break;
     case "darwin":
-      const dockercheckmac = child.spawn("/bin/sh", ["-c", "docker-check.sh"]);
+      const dockercheckmac = child.spawn("/bin/sh", [
+        "-c",
+        "./docker-check.sh",
+      ]);
       dockercheckmac.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
         mainwindow?.webContents.send("data", `${data}`);
@@ -80,7 +83,7 @@ export default function DockerBuider(platform: string) {
     default:
       const dockerchecklinux = child.spawn("/bin/sh", [
         "-c",
-        "docker-check.sh",
+        "./docker-check.sh",
       ]);
       dockerchecklinux.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
