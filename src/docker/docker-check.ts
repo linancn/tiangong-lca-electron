@@ -1,26 +1,10 @@
 import * as child from "child_process";
 import { app, BrowserWindow, ipcMain } from "electron";
-import fs from "fs";
 import axios from "axios";
-import { chmod } from "node:fs";
 
 export default function DockerBuider(platform: string) {
   const mainwindow = BrowserWindow.fromId(1);
   let isStarted = false;
-
-  // check execute permission
-  const checkExecPermission = function (path: fs.PathLike) {
-    try {
-      fs.accessSync(path, fs.constants.X_OK);
-    } catch (err) {
-      console.log("%s doesn't exist", path);
-      return;
-    }
-    chmod(path, 0o111, (err) => {
-      if (err) throw err;
-      // console.log("The exec permissions have been changed!");
-    });
-  };
 
   const axiosClient = axios.create({
     baseURL: "http://localhost:8081",
@@ -72,8 +56,6 @@ export default function DockerBuider(platform: string) {
 
       break;
     case "darwin":
-      checkExecPermission("docker-check.sh");
-      checkExecPermission("docker-stop.sh");
       const dockercheckmac = child.spawn("/bin/sh", ["-c", "docker-check.sh"]);
       dockercheckmac.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
@@ -96,8 +78,6 @@ export default function DockerBuider(platform: string) {
 
       break;
     default:
-      checkExecPermission("docker-check.sh");
-      checkExecPermission("docker-stop.sh");
       const dockerchecklinux = child.spawn("/bin/sh", [
         "-c",
         "docker-check.sh",
