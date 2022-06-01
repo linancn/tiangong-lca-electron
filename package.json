@@ -9,7 +9,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --config electron-builder.json"
   },
-  "author": "CrystaLCA",
+  "author": "CrystaLCA <linanenv@gmail.com> (https://www.crystalca.org/)",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
