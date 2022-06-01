@@ -7,7 +7,7 @@
     "output": "dist",
     "buildResources": "build-res"
   },
-  "files": ["package.json", "compiled/**/*", "node_modules"],
+  "files": ["package.json", "compiled/**/*", "node_modules", "index.html"],
   "extraFiles": [
     {
       "from": ".",
