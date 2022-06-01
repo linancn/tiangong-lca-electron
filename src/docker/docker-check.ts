@@ -58,7 +58,7 @@ export default function DockerBuider(platform: string) {
     case "darwin":
       const dockercheckmac = child.spawn("/bin/sh", [
         "-c",
-        "./docker-check.sh",
+        "/Applications/CrystaLCA.app/Contents/docker-check.sh",
       ]);
       dockercheckmac.stdout.on("data", (data) => {
         console.log(`message: ${data}`);
