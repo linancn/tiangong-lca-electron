@@ -83,7 +83,7 @@ export default function DockerBuider(platform: string) {
     default:
       const dockerchecklinux = child.spawn("/bin/sh", [
         "-c",
-        "./docker-check.sh",
+        "./docker-check-ubuntu.sh",
       ]);
       dockerchecklinux.stdout.on("data", (data) => {
         console.log(`message: ${data}`);

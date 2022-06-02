@@ -9,7 +9,7 @@ export default function DockerStop(platform: string) {
       child.spawn("/bin/sh", ["-c", "/Applications/CrystaLCA.app/Contents/docker-stop.sh"]);
       break;
     default:
-      child.spawn("/bin/sh", ["-c", "./docker-stop.sh"]);
+      child.spawn("/bin/sh", ["-c", "./docker-stop-ubuntu.sh"]);
       break;
   }
 }
