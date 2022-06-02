@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /Applications/CrystaLCA.app/Contents/ && docker compose stop
+export PATH="$PATH:/usr/local/bin/" && cd /Applications/CrystaLCA.app/Contents/ && docker compose stop
 if [ $? -ne 0 ];then
 	echo "Docker engine is not running."
 else
