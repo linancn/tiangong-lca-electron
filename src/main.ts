@@ -156,7 +156,7 @@ app.on("ready", () => {
 //   }
 // });
 
-app.on("before-quit", function () {
+app.on("quit", function () {
   //stop running containers
   DockerStop(process.platform);
 });

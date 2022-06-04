@@ -56,7 +56,7 @@
     "shortcutName": "CrystaLCA"
   },
   "linux": {
-    "target": ["AppImage","deb","rpm"],
+    "target": ["deb","rpm"],
     "category": "Science",
     "icon": "./icons"
   }
