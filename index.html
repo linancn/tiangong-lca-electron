@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%;">
 
 <head>
   <meta charset="UTF-8" />
@@ -23,13 +23,42 @@
     document.getElementById("exit").style.display = "inline";
   });
 
+  function setHeight() {
+    var bodyHeight = parseInt(document.body.offsetHeight);
+    var messageP = document.getElementById("message");
+    if (bodyHeight > 300) {
+      messageP.style.height = (bodyHeight - 120) + "px";
+    }
+    else {
+      messageP.style.height = "180px";
+    }
+  }
+
+  window.onresize = function () {
+    setHeight();
+  }
+  window.onload = function () {
+    setHeight();
+  }
+
 </script>
 
-<body>
-  <h1 id="title">Docker starting</h1>
-  <p>Message:</p>
-  <p id="message" style="height:400px; width:80%; border:1px solid blue; overflow:auto"></p>
-  <button id="exit" style="display:none" onclick={window.close()}>Exit</button>
+<body style="background-color:#000; color:#fff; margin:0; height:100%;">
+  <h1 id="title"
+    style="-webkit-user-select:none; -webkit-app-region:drag; margin:0; font-size:18px; padding-top:20px;width:90%; margin:0 auto;">
+    Docker
+    starting</h1>
+  <table style="width:90%; margin:0 auto;">
+    <tr>
+      <td><span style="font-size:16px;">Message:</span></td>
+      <td><button id="exit"
+          style="border:1px solid transparent; background-color:#1f1f1f; color:#fff; display:none; width:80px; height:30px; float:right;"
+          onclick={window.close()}>Exit</button></td>
+    </tr>
+  </table>
+  <p id="message"
+    style="font-size:14px; padding:10px; width:90%; margin:0 auto; background-color:#1f1f1f; overflow:auto;">
+  </p>
 </body>
 
 </html>
