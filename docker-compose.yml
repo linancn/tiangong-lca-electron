@@ -19,7 +19,7 @@ services:
       PGDATA: /postgres/data
 
   backend:
-    image: linancn/crystalcabackend:v0.0.7
+    image: linancn/tiangonglcabackend:v0.0.7
     labels:
      - lca
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
       - "8081:8081"
 
   foreend:
-    image: linancn/crystalca:v0.0.7
+    image: linancn/tiangonglca:v0.0.7
     labels:
      - lca
     restart: unless-stopped

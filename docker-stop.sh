@@ -1,5 +1,5 @@
 #!/bin/sh
-export PATH="$PATH:/usr/local/bin/" && cd /Applications/CrystaLCA.app/Contents/ && docker compose -p "crystalca" stop
+export PATH="$PATH:/usr/local/bin/" && cd /Applications/TianGongLCA.app/Contents/ && docker compose -p "tiangonglca" stop
 if [ $? -ne 0 ];then
 	echo "Docker engine is not running."
 else

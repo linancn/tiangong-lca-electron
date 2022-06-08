@@ -75,7 +75,7 @@ function createWindow() {
   const options = {
     provider: "github",
     owner: "linancn",
-    repo: "Electron-CrystaLCA",
+    repo: "TianGongLCA-Electron",
   } as AllPublishOptions;
 
   let autoUpdater: any;

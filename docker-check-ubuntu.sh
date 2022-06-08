@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /opt/CrystaLCA/ && (docker compose -p "crystalca" start || docker compose -p "crystalca" up -d)
+cd /opt/TiangongLCA/ && (docker compose -p "tiangonglca" start || docker compose -p "tiangonglca" up -d)
 if [ $? -ne 0 ];then
 	echo "Docker engine is not running."
 else

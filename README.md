@@ -1,6 +1,6 @@
-# Electron-CrystaLCA [![Build/release](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/linancn/Electron-CrystaLCA/actions/workflows/build.yml)
+# TianGongLCA-Electron [![Build/release](https://github.com/linancn/TianGongLCA-Electron/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/linancn/TianGongLCA-Electron/actions/workflows/build.yml)
 
-An Electron wrapped CrystaLCA.
+An Electron wrapped TianGongLCA.
 
 Install appimagelauncher in Linux
 

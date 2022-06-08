@@ -1,6 +1,6 @@
 {
-  "appId": "org.crystalca",
-  "productName": "CrystaLCA",
+  "appId": "org.tiangonglca",
+  "productName": "TianGongLCA",
   "copyright": "Nan LI",
   "directories": {
     "app": ".",
@@ -53,7 +53,7 @@
     "installerHeaderIcon": "./icons/icon.ico",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "CrystaLCA"
+    "shortcutName": "TianGongLCA"
   },
   "linux": {
     "target": ["deb","rpm"],

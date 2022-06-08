@@ -1,7 +1,7 @@
 {
-  "name": "electron_cystalca",
+  "name": "tiangonglca_electron",
   "version": "0.0.33",
-  "description": "An Electron wrapped CrystaLCA",
+  "description": "TianGongLCA",
   "main": "compiled/main.js",
   "scripts": {
     "compile": "tsc",
@@ -9,7 +9,7 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --config electron-builder.json"
   },
-  "author": "CrystaLCA <linanenv@gmail.com> (https://www.crystalca.org/)",
+  "author": "TianGongLCA <linanenv@gmail.com> (https://lca.tiangong.earth/)",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.27.2",
@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
-    "electron": "^19.0.1",
+    "electron": "^19.0.3",
     "electron-builder": "^23.0.3",
-    "typescript": "^4.7.2"
+    "typescript": "^4.7.3"
   }
 }

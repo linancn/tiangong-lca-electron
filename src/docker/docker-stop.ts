@@ -6,10 +6,10 @@ export default function DockerStop(platform: string) {
       child.spawnSync("cmd.exe", ["/C", "docker-stop.bat"]);
       break;
     case "darwin":
-      child.spawnSync("/bin/sh", ["-c", "/Applications/CrystaLCA.app/Contents/docker-stop.sh"]);
+      child.spawnSync("/bin/sh", ["-c", "/Applications/TianGongLCA.app/Contents/docker-stop.sh"]);
       break;
     default:
-      child.spawnSync("/bin/sh", ["-c", "/opt/CrystaLCA/docker-stop-ubuntu.sh"]);
+      child.spawnSync("/bin/sh", ["-c", "/opt/TianGongLCA/docker-stop-ubuntu.sh"]);
       break;
   }
 }

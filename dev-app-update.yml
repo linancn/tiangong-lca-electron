@@ -1,4 +1,4 @@
 owner: linancn
-repo: Electron-CrystaLCA
+repo: TianGongLCA-Electron
 provider: github
-updaterCacheDirName: electron_cystalca-updater
+updaterCacheDirName: tiangonglca-electron-updater
