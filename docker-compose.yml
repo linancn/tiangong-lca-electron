@@ -19,7 +19,7 @@ services:
       PGDATA: /postgres/data
 
   backend:
-    image: linancn/tiangonglca-backend:v0.0.8
+    image: linancn/tiangonglca-backend:v0.0.9
     labels:
      - lca
     restart: unless-stopped
