@@ -11,7 +11,7 @@ services:
       PGDATA: /postgres/data
 
   dbcommon:
-    image: linancn/postgres_55435:220514
+    image: linancn/postgres_55435:220612
     labels:
      - lca
     restart: unless-stopped
@@ -19,7 +19,7 @@ services:
       PGDATA: /postgres/data
 
   backend:
-    image: linancn/tiangonglca-backend:v0.0.9
+    image: linancn/tiangonglca-backend:v0.0.10
     labels:
      - lca
     restart: unless-stopped

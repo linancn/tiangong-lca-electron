@@ -1,6 +1,6 @@
 {
   "name": "tiangonglca_electron",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "description": "TianGongLCA",
   "main": "compiled/main.js",
   "scripts": {
